@@ -21,6 +21,12 @@ class RadioGroup extends Component
         //
     }
 
+    public function  optionsWithLabels(): array
+    {
+        //check if the array s associative, if not the  with array combine generates an associative array
+        return array_is_list($this->options) ? array_combine(array_map('ucfirst',$this->options), $this->options) : $this->options;
+    }
+
     /**
      * Get the view / contents that represent the component.
      */
