@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Job extends Model
 {
@@ -27,5 +28,10 @@ class Job extends Model
             )->when($filters['max_salary'] ?? null, fn($query, $maxSalary) => $query->where('salary', '<=', $maxSalary))
             ->when($filters['experience'] ?? null, fn($query, $experience) => $query->where('experience', $experience))
             ->when($filters['category'] ?? null, fn($query, $category) => $query->where('category', $category));
+    }
+
+    public function employer() :BelongsTo
+    {
+        return $this->belongsTo(Employer::class);
     }
 }
