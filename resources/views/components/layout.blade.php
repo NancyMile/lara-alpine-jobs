@@ -8,7 +8,31 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="mx-auto mt-10 max-w-2xl bg-gradient-to-r from-yellow-300 via-orange-500 to-yellow-800 text-slate-700">
-        {{ auth()->user()->name ?? 'Guest' }}
+        <nav class="mb-8 flex justify-between text-lg font-medium">
+            <ul class="flex space-x-2">
+                <li>
+                    <a href="{{ route('jobs.index') }}">Home</a>
+                </li>
+            </ul>
+            <ul class="flex space-x-2">
+                @auth
+                    <li>
+                        {{ auth()->user()->name ?? 'Guest' }}
+                    </li>
+                    <li>
+                        <form action="{{ route('auth.destroy') }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button>Logout</button>
+                        </form>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('auth.create') }}">Login</a>
+                    </li>
+                @endauth
+            </ul>
+        </nav>
         {{ $slot }}
     </body>
 </html>
