@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobApplication;
+
 class MyJobApplicationController extends Controller
 {
     /**
@@ -24,8 +26,9 @@ class MyJobApplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(JobApplication $myJobApplication)
     {
-        //
+        $myJobApplication->delete();
+        return redirect()->back()->with('success', 'Job application removed');
     }
 }

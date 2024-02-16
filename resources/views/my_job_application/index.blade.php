@@ -19,10 +19,23 @@
                         {{ $application->job->job_applications_count -1 }}
                     </div>
                 </div>
-                <div>Cancel</div>
+                <div>
+                    <form action="{{ route('my-job-applications.destroy',$application) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <x-button>Cancel</x-button>
+                    </form>
+                </div>
             </div>
         </x-job-card>
     @empty
-        nothing to see
+        <div class="rounded-md border border-dashed border-slate-300 p-8">
+            <div class="text-center font-medium">
+                No jobs applications.
+            </div>
+            <div class="text-center">
+                Find some jobs <a class="text-indigo-500 hover:underline" href="{{ route('jobs.index') }}">Here</a>
+            </div>
+        </div>
     @endforelse
 </x-layout>
