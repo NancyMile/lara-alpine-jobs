@@ -20,6 +20,9 @@ class JobApplicationController extends Controller
      */
     public function store(Job $job, Request $request)
     {
+        //authorize apply for an specific job
+        $this->authorize('apply',$job);
+
         $job->jobApplications()->create([
             'user_id' => $request->user()->id,
             ... $request->validate([
