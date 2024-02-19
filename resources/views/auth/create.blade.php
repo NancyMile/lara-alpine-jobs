@@ -5,11 +5,11 @@
             @csrf
 
             <div class="mb-8">
-                <label class="mb-2 block text-sm font-medium text-slate-900" for="email">Email</label>
+                <x-label for="email" :required="true">Email</x-label>
                 <x-text-input name="email" />
             </div>
             <div class="mb-8">
-                <label class="mb-2 block text-sm font-medium text-slate-900" for="password">Password</label>
+                <x-label for="password" :required="true">Password</x-label>
                 <x-text-input name="password" type="password"/>
             </div>
 
@@ -17,7 +17,7 @@
                 <div>
                     <div class="flex items-center space-x-2">
                         <input type="checkbox"  name="remember" class="rounded-sm border border-slate-400">
-                        <label for="remember">Remember me</label>
+                        <x-label :required="false" for="remember">Remember me</x-label>
                     </div>
                 </div>
                 <div>
