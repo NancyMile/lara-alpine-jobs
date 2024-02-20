@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\JobRequest;
 use App\Models\Job;
-use Illuminate\Http\Request;
 
 class MyJobController extends Controller
 {
@@ -13,6 +12,7 @@ class MyJobController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAnyEmployer', Job::class);
         return view("my_job.index",[
             'jobs' => auth()->user()->employer->jobs()
             ->with('employer','jobApplications','jobApplications.user')
@@ -25,6 +25,7 @@ class MyJobController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Job::class);
         return view("my_job.create");
     }
 
@@ -43,6 +44,7 @@ class MyJobController extends Controller
      */
     public function edit(Job $myJob)
     {
+        $this->authorize('update', $myJob);
         return view('my_job.edit', ['job'=> $myJob]);
     }
 
