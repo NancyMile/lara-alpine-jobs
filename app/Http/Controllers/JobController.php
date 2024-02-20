@@ -13,7 +13,7 @@ class JobController extends Controller
     public function index()
     {
         $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category');
-        return view('jobs.index',['jobs' => Job::with('employer')->filter($filters)->get()]); //with relationship
+        return view('jobs.index',['jobs' => Job::with('employer')->latest()->filter($filters)->get()]); //with relationship
     }
 
     /**
