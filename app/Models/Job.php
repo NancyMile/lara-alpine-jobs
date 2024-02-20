@@ -14,6 +14,8 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title','location','salary','description','experience','category'] ;
+
     //as it is static can can use without instance
     public static array $experience = ['Entry','Junior','Senior'];
     public static array  $category = ['IT','Finance','Sales','Marketing'];
