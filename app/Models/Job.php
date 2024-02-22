@@ -8,6 +8,7 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -56,5 +57,10 @@ class Job extends Model
                 'jobApplications',
                 fn($query) => $query->where('user_id', '=', $user->id ?? $user)
             )->exists();
+    }
+
+    public function tags (): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 }
