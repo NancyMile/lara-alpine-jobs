@@ -22,6 +22,6 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $this->authorize('view',$job);
-        return view('jobs.show',['job' => $job->load('employer.jobs')]); //load relationship, current employer and all jobs af that employer
+        return view('jobs.show',['job' => $job->load('employer.jobs','tags')]); //load relationship, current employer and all jobs af that employer
     }
 }

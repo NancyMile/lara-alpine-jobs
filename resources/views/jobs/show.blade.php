@@ -9,7 +9,7 @@
             @foreach($job->tags as $tag)
             <div class="flex text-xs md:inline-flex">
                 <x-tag>
-                    <a href="#">
+                    <a href="{{ route('jobs.tags.index',['tag' => $tag->id]) }}">
                         {{ Str::ucfirst($tag->name) }}
                     </a>
                 </x-tag>
