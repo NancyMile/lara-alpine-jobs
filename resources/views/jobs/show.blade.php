@@ -5,6 +5,18 @@
             {!! nl2br(e($job->description)) !!}
         </p>
 
+        @if($job->tags)
+            @foreach($job->tags as $tag)
+            <div class="flex text-xs md:inline-flex">
+                <x-tag>
+                    <a href="#">
+                        {{ Str::ucfirst($tag->name) }}
+                    </a>
+                </x-tag>
+            </div>
+            @endforeach
+        @endif
+
         @can('apply',$job)
             <x-link-button :href="route('job.application.create',$job)">Apply</x-link-button>
         @else
